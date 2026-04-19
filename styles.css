@@ -180,3 +180,12 @@ a {
     border: 2px solid #fff;
     border-radius: 8px;
 }
+
+footer {
+    background-color: #1f2937;
+    height: 80px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
