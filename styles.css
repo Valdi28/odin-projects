@@ -142,3 +142,41 @@ a {
     font-weight: 800;
     font-size: 22px;
 }
+
+.appeal {
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 180px;
+}
+
+.container {
+    background-color: #3882f6;
+    height: 150px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.container h3 {
+    font-size: 22px;
+}
+
+.container p {
+    font-size: 18px;
+}
+
+.container button {
+    padding: 5px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 8px;
+}
