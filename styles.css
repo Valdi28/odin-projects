@@ -118,3 +118,27 @@ a {
     align-items: center;
     gap: 10px;
 }
+
+.quote {
+    color: #1f2937;
+    background-color: #e5e7eb;
+    height: 350px;
+    padding: 30px 250px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.quote .content {
+    font-size: 36px;
+    
+    font-weight: 300;
+}
+
+.quote .author {
+    align-self: flex-end;
+    font-weight: 800;
+    font-size: 22px;
+}
