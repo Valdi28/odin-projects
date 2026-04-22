@@ -1,0 +1,28 @@
+body {
+    background-color: #5aec5a;
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.recipes-box {
+    margin-top: 20px;
+}
+
+.recipe {
+    border: 3px solid #000;
+    display: inline-block;
+    padding: 10px;
+}
+
+ul {
+    display: flex;
+}
+
+img {
+    height: 200px;
+}
