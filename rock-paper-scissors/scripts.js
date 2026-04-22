@@ -11,3 +11,12 @@ function validatePick(pick) {
 
     return validOptions.includes(pick)
 }
+
+
+function randomPick() {
+    const validOptions = ["rock", "paper", "scissors"]
+    
+    const index = Math.floor(Math.random()*3)
+
+    return validOptions[index]
+}
