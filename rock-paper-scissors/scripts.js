@@ -20,3 +20,38 @@ function randomPick() {
 
     return validOptions[index]
 }
+
+
+// 0 = tie; 1 = wins; -1 = loses
+function playerWins(player, machine) {
+    switch (player) {
+        case "rock":
+            if (machine==="rock") {
+                return 0
+            } else if (machine=="paper") {
+                return -1
+            } else {
+                return 1
+            }
+            
+        case "paper":
+            if (machine==="paper") {
+                return 0
+            } else if (machine=="scissors") {
+                return -1
+            } else {
+                return 1
+            }
+
+        case "scissors":
+            if (machine==="scissors") {
+                return 0
+            } else if (machine=="rock") {
+                return -1
+            } else {
+                return 1
+            }
+
+    }
+
+}
