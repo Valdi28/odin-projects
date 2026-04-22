@@ -12,7 +12,6 @@ function validatePick(pick) {
     return validOptions.includes(pick)
 }
 
-
 function randomPick() {
     const validOptions = ["rock", "paper", "scissors"]
     
@@ -20,7 +19,6 @@ function randomPick() {
 
     return validOptions[index]
 }
-
 
 // 0 = tie; 1 = wins; -1 = loses
 function playerWins(player, machine) {
@@ -54,4 +52,29 @@ function playerWins(player, machine) {
 
     }
 
+}
+
+let userScore = 0
+let machineScore = 0
+
+while (true) {
+    const userPick = askUser();
+    const machinePick = randomPick()
+
+    console.log(userPick);
+    console.log(machinePick);
+    
+    
+    if(playerWins(userPick, machinePick) === 1) {
+        userScore++;
+        alert(`You win, ${userScore}-${machineScore}`);
+
+    } else  if(playerWins(userPick, machinePick) === -1) {
+        machineScore++;
+        alert(`You lose, ${userScore}-${machineScore}`);
+
+    } else {
+        alert(`It's a tie, ${userScore}-${machineScore}`);
+    }
+    
 }
