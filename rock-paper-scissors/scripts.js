@@ -52,19 +52,32 @@ function playerWins(player, machine) {
 
 }
 
-let playerScore = 0
-let machineScore = 0
-
 function playRound(playerPick, machinePick) {
     if(playerWins(playerPick, machinePick) === 1) {
         playerScore++;
-        alert(`You win, ${playerScore}-${machineScore}`);
+        alert(`Machine pick: ${machinePick}. You win, ${playerScore}-${machineScore}`);
 
     } else  if(playerWins(playerPick, machinePick) === -1) {
         machineScore++;
-        alert(`You lose, ${playerScore}-${machineScore}`);
+        alert(`Machine pick: ${machinePick}. You lose, ${playerScore}-${machineScore}`);
 
     } else {
-        alert(`It's a tie, ${playerScore}-${machineScore}`);
+        alert(`Machine pick: ${machinePick}. It's a tie, ${playerScore}-${machineScore}`);
     }
+}
+
+let playerScore = 0
+let machineScore = 0
+
+const pointsToWin = 5
+
+while (machineScore < pointsToWin && playerScore < pointsToWin) {
+    playRound(askUser(), randomPick());
+    console.log(playerScore, machineScore);
+};
+
+if (playerScore === pointsToWin) {
+    alert('You won the game!')
+} else if (machineScore === pointsToWin) {
+    alert('You lost the game')
 }
