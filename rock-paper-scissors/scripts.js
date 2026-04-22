@@ -52,23 +52,19 @@ function playerWins(player, machine) {
 
 }
 
-let userScore = 0
+let playerScore = 0
 let machineScore = 0
 
-while (true) {
-    const userPick = askUser();
-    const machinePick = randomPick()
-    
-    if(playerWins(userPick, machinePick) === 1) {
+function playRound(playerPick, machinePick) {
+    if(playerWins(playerPick, machinePick) === 1) {
         userScore++;
-        alert(`You win, ${userScore}-${machineScore}`);
+        alert(`You win, ${playerScore}-${machineScore}`);
 
-    } else  if(playerWins(userPick, machinePick) === -1) {
+    } else  if(playerWins(playerPick, machinePick) === -1) {
         machineScore++;
-        alert(`You lose, ${userScore}-${machineScore}`);
+        alert(`You lose, ${playerScore}-${machineScore}`);
 
     } else {
-        alert(`It's a tie, ${userScore}-${machineScore}`);
+        alert(`It's a tie, ${playerScore}-${machineScore}`);
     }
-    
 }
