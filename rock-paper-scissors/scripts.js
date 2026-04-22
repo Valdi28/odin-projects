@@ -57,7 +57,7 @@ let machineScore = 0
 
 function playRound(playerPick, machinePick) {
     if(playerWins(playerPick, machinePick) === 1) {
-        userScore++;
+        playerScore++;
         alert(`You win, ${playerScore}-${machineScore}`);
 
     } else  if(playerWins(playerPick, machinePick) === -1) {
