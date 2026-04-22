@@ -58,10 +58,6 @@ let machineScore = 0
 while (true) {
     const userPick = askUser();
     const machinePick = randomPick()
-
-    console.log(userPick);
-    console.log(machinePick);
-    
     
     if(playerWins(userPick, machinePick) === 1) {
         userScore++;
