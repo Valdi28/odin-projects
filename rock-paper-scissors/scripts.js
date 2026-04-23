@@ -71,13 +71,17 @@ let machineScore = 0
 
 const pointsToWin = 5
 
-while (machineScore < pointsToWin && playerScore < pointsToWin) {
-    playRound(askUser(), randomPick());
-    console.log(playerScore, machineScore);
-};
+function playGame(pointsToWin) {
+    while (machineScore < pointsToWin && playerScore < pointsToWin) {
+        playRound(askUser(), randomPick());
+        console.log(playerScore, machineScore);
+    };
 
-if (playerScore === pointsToWin) {
-    alert('You won the game!')
-} else if (machineScore === pointsToWin) {
-    alert('You lost the game')
+    if (playerScore === pointsToWin) {
+        alert('You won the game!')
+    } else if (machineScore === pointsToWin) {
+        alert('You lost the game')
+    }
 }
+
+playGame(5);
