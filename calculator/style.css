@@ -51,9 +51,12 @@ body {
     
 }
 
-.numbers > .row > button {
+.row > .dot {
     flex-grow: 1;
-    font-size: 35px;
+}
+
+.row > .zero {
+    flex-grow: 2;
 }
 
 .operators {
@@ -68,10 +71,12 @@ body {
     flex: 1 ;
 }
 
-.operators > .row > button {
+.row > button {
     font-size: 35px;
     flex: 1;
 }
 
-
-
+.error-msg {
+    size: 30px;
+    color: #ff0000;
+}
