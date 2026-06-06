@@ -24,9 +24,13 @@ body {
 }
 
 .display {
-    flex: 3 1 auto;
+    flex: 3 1;
     background-color: #000000;
     color: #ffffff;
+    font-size: 100%;
+    text-align: right;
+    font-size: 80px;
+    overflow: scroll;
 }
 
 .calc-buttons {
