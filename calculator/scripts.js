@@ -64,7 +64,7 @@ function processInput(input) {
     const operators = '+-*/';
     const numbers = '0123456789';
 
-    if (!operator && !num2 && (numbers.includes(input) || (num1 != '' && input == '-') || input == '.')) {
+    if (!operator && !num2 && (numbers.includes(input) || (num1 == '' && input == '-') || input == '.')) {
         if (input == '-' && !num1) {
             num1 += input;
         };
@@ -79,7 +79,7 @@ function processInput(input) {
 
         displayData(num1);
         return;
-    } else if (num1 != '' && operator && (numbers.includes(input) || (!num2 && input == '-') || input == '.')) {
+    } else if (Number(num1) && operator && (numbers.includes(input) || (!num2 && input == '-') || input == '.')) {
         if (numbers.includes(input)) {
             num2 += input;
         };
@@ -95,7 +95,7 @@ function processInput(input) {
         displayData(num2);
 
         return;
-    } else if (Number(num1) != undefined && !num2 && operators.includes(input)) {
+    } else if (Number(num1) && !num2 && operators.includes(input)) {
         operator = input;
         displayData(num1);
         return;
@@ -136,6 +136,18 @@ function processInput(input) {
         num2 = '';
 
         displayData(num1);
+    } else if (input="DEL") {
+        if (num2!='') {
+            num2 = num2.slice(0, -1)
+            displayData(num2)
+            return;
+        } else if (operator != '') {
+            operator = '';
+            displayData(num1)
+        } else {
+            num1 = num1.slice(0, -1)
+            displayData(num1)
+        }
     }
 
 };
