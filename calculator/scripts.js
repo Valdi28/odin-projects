@@ -61,6 +61,7 @@ function isDividedByZero(num1, num2, operator) {
 }
 
 function processInput(input) {
+    
     const operators = '+-*/';
     const numbers = '0123456789';
 
@@ -107,7 +108,7 @@ function processInput(input) {
             operator = '';
         } else {
             const firstEquationResult = operate(operator, num1, num2);
-            num1 = ''
+            num1 = firstEquationResult
             operator = input;
             num2 = '';
 
@@ -123,7 +124,7 @@ function processInput(input) {
             operator = '';
         } else {
             const equationResult = operate(operator, num1, num2);
-            num1 = ''
+            num1 = equationResult
             operator = '';
             num2 = '';
 
@@ -160,4 +161,17 @@ container.addEventListener('click', (e) => {
 
         processInput(e.target.textContent);
     }
+})
+
+document.addEventListener('keyup', (e) => {
+    if (e.key == "Backspace") {
+        processInput("DEL")
+    } else if (e.key == "Enter") {
+        processInput("=")
+    } else if (e.key == "Escape") {
+        processInput("AC")
+    } else {
+        processInput(e.key)
+    }
+    
 })
