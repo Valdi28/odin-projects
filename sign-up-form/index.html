@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-up Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="wallpaper">
         <div class="brand-info">
             <img class="logo" src="img/odin.png" alt="Odin logo">
             <h1 class="name">ODIN</h1>
         </div>
-        <p class="atribution">Photo by <a href="https://unsplash.com/@haliewestphoto">Halie West</a> on <a href="https://unsplash.com">Unsplash</a></p>
+        <p class="atribution">Photo by <a href="https://unsplash.com/@haliewestphoto">Halie West</a> on <a
+                href="https://unsplash.com">Unsplash</a></p>
     </div>
     <div class="main">
-        
+
         <p class="initial-msg">
             <strong>
                 This is not a real online service! You know you need something
@@ -31,23 +34,36 @@
         <form class="main-form">
             <h2 class="form-title">Let's do this</h2>
 
-            <label for="first-name">First Name</label>
-            <input type="text" name="first-name" id="first-name">
+            <div class="form-controls">
+                <p>
+                    <label for="first-name">First Name</label>
+                    <input type="text" name="first-name" id="first-name">
+                </p>
 
-            <label for="last-name">Last Name</label>
-            <input type="text" name="last-name" id="last-name">
+                <p>
+                    <label for="last-name">Last Name</label>
+                    <input type="text" name="last-name" id="last-name">
+                </p>
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+                <p>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                </p>
 
-            <label for="phone-number">Phone Number</label>
-            <input type="tel" name="phone-number" id="phone-number">
+                <p>
+                    <label for="phone-number">Phone Number</label>
+                    <input type="tel" name="phone-number" id="phone-number">
+                </p>
+                <p>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                </p>
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-
-            <label for="confirm-password">Confirm password</label>
-            <input type="password" name="confirm-password" id="confirm-password">
+                <p>
+                    <label for="confirm-password">Confirm password</label>
+                    <input type="password" name="confirm-password" id="confirm-password">
+                </p>
+            </div>
 
             <button type="submit">Create Account</button>
         </form>
@@ -55,4 +71,5 @@
         <p class="alternative-auth">Already have an account? <a href="">Login</a></p>
     </div>
 </body>
+
 </html>
