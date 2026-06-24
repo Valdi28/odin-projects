@@ -10,20 +10,23 @@
 body {
     box-sizing: border-box;
     display: flex;
+    font-family: Arial, Georgia, 'Times New Roman', Times, serif;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
 }
 
 .wallpaper {
-    flex: 1;
+    flex: 2;
     background-color: red;
     width: 100%;
     height: 100vh;
-    
+
     background-image: url(img/plant.jpg);
     background-size: cover;
     background-position: center;
@@ -48,7 +51,7 @@ body {
     background-color: #00000098;
 }
 
-.brand-info > .logo {
+.brand-info>.logo {
     width: 2em;
     align-self: center;
 }
@@ -56,7 +59,7 @@ body {
 .wallpaper .attribution {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 0.8rem;
-    word-break:keep-all;
+    word-break: keep-all;
 
     position: absolute;
     bottom: 10px;
@@ -80,5 +83,107 @@ body {
 }
 
 .main {
-    flex: 2;
+    flex: 3;
+    background-color: #f9fafb;
+}
+
+.main .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.content>* {
+    margin: 20px 40px;
+}
+
+h2 {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main .main-form {
+    margin: 0;
+}
+
+.main .main-form>* {
+    margin: auto 40px;
+}
+
+.main-form button[type="submit"] {
+    background-color: #596d48;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px 30px;
+}
+
+.main-form .main-section {
+    background-color: #ffffff;
+    width: 100%;
+    margin: 0;
+    padding: 25px 40px;
+    padding-right: 35%;
+    box-shadow: 0 5px 5px #dadadb;
+    margin: 0 auto;
+}
+
+.main-section h2 {
+    margin-bottom: 20px;
+}
+
+.main-section .form-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.main-section .form-controls p {
+    width: 45%;
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.main-section .form-controls input[type="tel"],
+.main-section .form-controls input[type="text"],
+.main-section .form-controls input[type="password"],
+.main-section .form-controls input[type="email"] {
+    padding: 3px;
+    border: 1px solid #d8d8d8 ;
+    border-radius: 5px;
+}
+
+.main-section .form-controls input[type="tel"]:invalid,
+.main-section .form-controls input[type="text"]:invalid,
+.main-section .form-controls input[type="password"]:invalid,
+.main-section .form-controls input[type="email"]:invalid {
+    border: 2px solid #f00;
+}
+
+
+.main-section .form-controls p>* {
+    width: 100%;
+}
+
+
+.alternative-auth {
+    font-size: 12px;
+}
+
+.alternative-auth>a {
+    text-decoration: none;
+    color: #596d48;
+    font-weight: bold;
+}
+
+.content .initial-msg {
+    font-family: Arial, Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
