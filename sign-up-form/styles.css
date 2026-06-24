@@ -159,13 +159,6 @@ h2 {
     border-radius: 5px;
 }
 
-.main-section .form-controls input[type="tel"]:invalid,
-.main-section .form-controls input[type="text"]:invalid,
-.main-section .form-controls input[type="password"]:invalid,
-.main-section .form-controls input[type="email"]:invalid {
-    border: 2px solid #f00;
-}
-
 
 .main-section .form-controls p>* {
     width: 100%;
