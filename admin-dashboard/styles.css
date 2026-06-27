@@ -232,7 +232,7 @@ body {
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(auto-fit, minmax(300px, 1fr));
 
-  gap: 8px;
+  gap: 20px;
 }
 
 .card {
