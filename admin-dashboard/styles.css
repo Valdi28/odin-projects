@@ -19,10 +19,6 @@ body {
     grid-template: 2fr 5fr 5fr / 2fr 7fr;
 }
 
-.layout-container>*>* {
-    border: 1px solid blue;
-}
-
 .sidebar {
     grid-row: 1 / 4;
 }
