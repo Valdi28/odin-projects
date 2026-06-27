@@ -317,3 +317,34 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.trending-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 5px;
+}
+
+.user {
+  display: grid;
+  grid-template: 1fr 1fr / min-content 3fr;
+  gap: 0 10px;
+
+  align-items: center;
+}
+
+.user .avatar {
+  width: 30px;
+  grid-row: 1 / 3;
+}
+
+.user .username {
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.user .display-name {
+  color: #636363;
+  font-size: 0.6rem;
+}
