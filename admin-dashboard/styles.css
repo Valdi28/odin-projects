@@ -1,3 +1,7 @@
+:root {
+  --blue-color: #1992d4;
+}
+
 @font-face {
     font-family: 'Roboto';
     src: url('fonts/Roboto-Bold.woff2') format('woff2'),
@@ -45,7 +49,7 @@ body {
 .sidebar {
   grid-row: 1 / 4;
 
-  background-color: #1992d4;
+  background-color: var(--blue-color);
 
   padding: 15px;
   color: #fff;
@@ -99,12 +103,16 @@ body {
 .header {
   grid-column: 2 / 3;
   display: grid;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 1fr 1fr;
+}
+
+.header > * {
+  padding: 0 30px;
 }
 
 .topbar {
   display: grid;
-  grid-template-columns: 5fr 40px 2fr;
+  grid-template-columns: 5fr 40px max-content;
   gap: 15px;
   align-items: center;
 }
@@ -133,10 +141,10 @@ body {
   align-items: center;
 
   align-content: center;
-  padding: 0 10% 0 5%;
+  padding-right: 10%;
 }
 
-.search  input {
+.search input {
   padding: 10px;
   background-color: #e2e8f0;
   border: 0;
@@ -145,7 +153,54 @@ body {
   width: 100%;
 }
 
+.welcome-avatar {
+  height: 40px;
+}
 
+.managing-panel {
+  display: grid;
+
+  grid-template-columns: min-content 7fr 6fr;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 4px 3px #d6d6d6;
+  z-index: -1;
+}
+
+.welcomer {
+  display: flex;
+}
+
+.welcome-text {
+  font-size: 0.7rem;
+}
+
+.welcomer-name {
+  display: block;
+  font-weight: bold;
+  font-size: 1.4em;
+  padding-top: 3px;
+}
+
+.manage-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.manage-btn {
+  background-color: var(--blue-color);
+  padding: 8px 10px;
+  border: none;
+  flex: 1;
+  border-radius: 20px;
+
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+}
 
 .main-content {
   grid-row: 2 / 4;
