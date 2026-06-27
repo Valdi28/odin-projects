@@ -1,6 +1,26 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Bold.woff2') format('woff2'),
+        url('fonts/Roboto-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Regular.woff2') format('woff2'),
+        url('fonts/Roboto-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
   box-sizing: border-box;
   height: 100vh;
+
+  font-family: Roboto, system-ui, sans-serif;
 }
 
 *,
@@ -18,9 +38,58 @@ body {
   grid-template: 2fr 5fr 5fr / 2fr 7fr;
 }
 
+
+
+
 .sidebar {
   grid-row: 1 / 4;
+
+  background-color: #1992d4;
+
+  padding: 15px;
+  color: #fff;
+  font-weight: 501;
 }
+
+.sidebar .dashboard-title {
+  width: 100%;
+  font-size: 1.3rem;
+  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 30px
+}
+
+.sidebar .dashboard-title .icon {
+  width: 2.3rem;
+}
+
+.sidebar .navlinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .item {
+  font-size: 1rem;
+  padding: 10px 0 10px 5px;
+}
+
+.sidebar .item > * {
+  vertical-align: center;
+}
+
+.sidebar .item .icon {
+  padding-right: 5px;
+
+  width: 1.6rem;
+}
+
+.sidebar .item:nth-last-child(4) {
+  margin-bottom: 50px;
+}
+
 
 .header {
   grid-column: 2 / 3;
