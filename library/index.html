@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library project</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Library!!!</h1>
+
+    <button class="addBookToggle">Add Book</button>
+
+    <form class="addBookForm hidden">
+        <label for="nameField">Book name</label>
+        <input type="text" id="nameField">
+
+        <label for="authorField">Book author</label>
+        <input type="text" id="authorField">
+
+        <label for="yearField">Book year</label>
+        <input type="text" id="yearField">
+
+        <button class="submitAddBook">Submit</button>
+    </form>
 
     <table class="books">
         <tr>
