@@ -1,20 +1,27 @@
 const myLibrary = [];
 
-function Book(name, author, year) {
+function Book(name, author, year, readed) {
     this.name = name;
     this.author = author;
     this.year = year;
+    this.readed = readed;
+    this.toggleReadingStatus = () => {
+        this.readed = this.readed ? false : true;
+    };
     this.id = crypto.randomUUID();
 };
 
-function addBookToLibrary(library, name, author, year) {
-    const book = new Book(name, author, year);
+function addBookToLibrary(library, name, author, year, readed) {
+    const book = new Book(name, author, year, readed);
 
     return library.push(book);
 };
 
-addBookToLibrary(myLibrary, 'Harry Potter', 'JK Rowling', '1999');
-addBookToLibrary(myLibrary, 'Lord of Rings', 'IDK', '1980');
+addBookToLibrary(myLibrary, 'Harry Potter', 'JK Rowling', '1999', true);
+addBookToLibrary(myLibrary, 'Lord of Rings', 'IDK', '1980', true);
+
+console.log(myLibrary);
+
 
 function renderLibary(tableElement, array) {
     while (tableElement.firstChild) {
@@ -34,13 +41,23 @@ function renderLibary(tableElement, array) {
         author.innerText = item.author;
 
         const year = document.createElement('td');
-        year.innerHTML = item.year;
+        year.innerText = item.year;
+
+        const readed = document.createElement('td');
+        readed.innerText = item.readed ? 'Yes' : 'No';
 
         const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = "Delete!"
+        deleteBtn.innerText = "Delete!"
         deleteBtn.onclick = () => deleteBook(array, item.id)
 
-        row.append(name, author, year, deleteBtn)
+        const toggleReadingStatus = document.createElement('button');
+        toggleReadingStatus.innerText = "Toggle readed status";
+        toggleReadingStatus.onclick = () => {
+            item.toggleReadingStatus();
+            renderLibary(tableElement, myLibrary);
+        };
+
+        row.append(name, author, year, readed, deleteBtn, toggleReadingStatus)
         
         tableElement.appendChild(row);
     };
@@ -72,12 +89,17 @@ submitAddBook.addEventListener('click', (event) => {
     const nameField = document.querySelector('#nameField');
     const authorField = document.querySelector('#authorField');
     const yearField = document.querySelector('#yearField');
+    const readedStatusField = document.querySelector('#readedStatusField');
 
     const name = nameField.value ? nameField.value : "Unknown";
     const author = authorField.value ? authorField.value : "Unknown";
     const year = yearField.value ? yearField.value : "Unknown";
+    const readedStatus = readedStatusField.checked ? true : false;
 
-    addBookToLibrary(myLibrary, name, author, year);
+    console.log(readedStatusField.checked);
+    
+
+    addBookToLibrary(myLibrary, name, author, year, readedStatus);
     renderLibary(tableElement, myLibrary);
 });
 
