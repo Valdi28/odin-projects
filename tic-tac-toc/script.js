@@ -29,12 +29,12 @@ const game = (function () {
 
             if (this.currentPlayer == this.players.player) {
                 this.currentPlayer = this.players.bot
-                
-            } else{
+
+            } else {
                 this.currentPlayer = this.players.player
-                
+
             }
-            
+
             return this.currentPlayer
         },
         checkIfAlreadyPlaced: function (x, y) {
@@ -89,6 +89,10 @@ const game = (function () {
             }
 
 
+            if (gameBoard.map(val => val.join(" ")).join(" ").split(" ").filter(val => val == "X" || val == "O").length == 9) {
+                return "tie"
+            };
+
             return false
         },
         pickRandomPlace: function () {
@@ -104,11 +108,12 @@ const game = (function () {
                 y = newRandomCords.y
             }
 
+
             return { x, y }
 
 
         },
-        makeRender: function() {
+        makeRender: function () {
             return gameBoard.map(val => val.join(" ")).join("\n")
         },
         askPlayer: function (player) {
@@ -121,43 +126,44 @@ const game = (function () {
                 y = prompt("Enter y")
             }
 
-            return {x, y}
+            return { x, y }
         },
         clearBoard: () => {
-            for (let i = 0; i<3; i++) {
-                for (let j = 0; j<3; j++) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
                     gameBoard[i][j] = "_"
                     console.log(gameBoard[i][j]);
-                    
+
                 }
             }
-            console.log(gameBoard);
-            
+
         },
-        main: function() {
+        main: function () {
             this.setCurrentPlayer()
-            
+
             while (!this.checkWinner()) {
                 console.log(this.makeRender());
-                console.log(this.currentPlayer);
-                
-                
+
                 if (this.currentPlayer == this.players.player) {
-                    const {x, y} = this.askPlayer(this.players.player)
+                    const { x, y } = this.askPlayer(this.players.player)
                     this.placeSign(this.players.player, x, y)
                 } else {
-                    const {x, y} = this.pickRandomPlace()
+                    const { x, y } = this.pickRandomPlace()
                     this.placeSign(this.players.bot, x, y)
                 }
                 this.setCurrentPlayer()
             }
 
-            console.log(`Winner is... ${this.checkWinner().name}`);
-            this.checkWinner().score++
+            if (this.checkWinner() == "tie") {
+                console.log("Tie!!");
+            } else {
+                console.log(`Winner is... ${this.checkWinner().name}`);
+                this.checkWinner().score++
+            }
 
             this.clearBoard()
             this.main()
-            
+
         }
     }
 })()
