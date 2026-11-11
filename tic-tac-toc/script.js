@@ -9,43 +9,48 @@ const gameBoard = (function () {
 const makePlayer = (name, sign) => {
     return {
         name,
-        sign,
-        score: 0
+        sign
     }
 }
+
+const displayController = (() => {
+    return {
+        updateDisplay: function () {
+            const rows = document.querySelectorAll('.rows');
+
+            rows.forEach((row, rowIndex) => {
+                const rowArr = Array.from(row.childNodes)
+
+                rowArr.filter(rowArrVal => rowArrVal.nodeType == 1).map((tile, tileIndex) => {
+                    tile.textContent = gameBoard[rowIndex][tileIndex]
+                });
+
+            })
+        },
+        updateInfo: function(message) {
+            const info = document.querySelector(".info")
+
+            info.textContent = message
+        }
+    }
+})()
 
 const game = (function () {
     return {
         players: {
-            player: makePlayer("player", "X"),
+            player: makePlayer("", "X"),
             bot: makePlayer("bot", "O")
         },
         currentPlayer: undefined,
-        setCurrentPlayer() {
-            if (!this.currentPlayer) {
-                this.currentPlayer = (Math.round(Math.random()) ? this.players.player : this.players.bot)
-                return this.currentPlayer
-            }
-
-            if (this.currentPlayer == this.players.player) {
-                this.currentPlayer = this.players.bot
-
-            } else {
-                this.currentPlayer = this.players.player
-
-            }
-
-            return this.currentPlayer
-        },
         checkIfAlreadyPlaced: function (x, y) {
-            if (gameBoard[x - 1][y - 1] == "_") {
-                return true
-            } else {
+            if (gameBoard[x][y] == "_") {
                 return false
+            } else {
+                return true
             }
         },
         placeSign: function (player, x, y) {
-            gameBoard[x - 1][y - 1] = player.sign
+            gameBoard[x][y] = player.sign
         },
         checkWinner: function () {
             const playerSign = this.players.player.sign
@@ -97,12 +102,12 @@ const game = (function () {
         },
         pickRandomPlace: function () {
             function randomCords() {
-                const toReturn = { x: Math.round(Math.random() * 2 + 1), y: Math.round(Math.random() * 2 + 1) }
+                const toReturn = { x: Math.round(Math.random() * 2), y: Math.round(Math.random() * 2) }
                 return toReturn
             }
             let { x, y } = randomCords()
 
-            while (!this.checkIfAlreadyPlaced(x, y)) {
+            while (this.checkIfAlreadyPlaced(x, y)) {
                 const newRandomCords = randomCords()
                 x = newRandomCords.x
                 y = newRandomCords.y
@@ -132,39 +137,116 @@ const game = (function () {
             for (let i = 0; i < 3; i++) {
                 for (let j = 0; j < 3; j++) {
                     gameBoard[i][j] = "_"
-                    console.log(gameBoard[i][j]);
 
                 }
             }
 
         },
-        main: function () {
-            this.setCurrentPlayer()
-
-            while (!this.checkWinner()) {
-                console.log(this.makeRender());
-
-                if (this.currentPlayer == this.players.player) {
-                    const { x, y } = this.askPlayer(this.players.player)
-                    this.placeSign(this.players.player, x, y)
-                } else {
-                    const { x, y } = this.pickRandomPlace()
-                    this.placeSign(this.players.bot, x, y)
-                }
-                this.setCurrentPlayer()
-            }
-
-            if (this.checkWinner() == "tie") {
-                console.log("Tie!!");
+        setPlayerName: function(name) {
+            if (!name) {
+                this.players.player.name = "Unknown"
+                return "Unknown"
             } else {
-                console.log(`Winner is... ${this.checkWinner().name}`);
-                this.checkWinner().score++
+                this.players.player.name = name
+                return name
+            }
+        },
+        handleResetButton: function() {
+            this.clearBoard()
+            displayController.updateInfo(`${this.players.player.name} vs AI`)
+            displayController.updateDisplay()
+        },
+        main: function (x, y) {
+            if (this.checkWinner()) {return}
+
+            if(this.players.player.name == "") {
+                const promptAnswer  = prompt("Please enter your name")
+                
+                const newName = this.setPlayerName(promptAnswer)
+                displayController.updateInfo(`${newName} vs AI`)
             }
 
-            this.clearBoard()
-            this.main()
+            if (!this.currentPlayer) {
+                if (Math.round(Math.random())) {
+                    this.currentPlayer = this.players.player
 
+                } else {
+                    this.currentPlayer = this.players.bot
+                }
+            }
+            displayController.updateDisplay()
+
+            if (this.currentPlayer == this.players.player && x == undefined && y == undefined) {
+                this.currentPlayer = this.players.player
+
+                return
+            }
+
+            if (this.currentPlayer == this.players.player) {
+                if (!this.checkIfAlreadyPlaced(x, y)) {
+                    this.placeSign(this.players.player, x, y)
+
+                    if (this.checkWinner() == "tie")  {
+                        displayController.updateInfo("Tie!!!")
+                        // this.clearBoard()
+                        displayController.updateDisplay()
+                        return
+                    } else if (this.checkWinner()) {
+                        displayController.updateInfo(`Winner: ${this.checkWinner().name}`);
+                        // this.clearBoard()
+                        displayController.updateDisplay()
+                        
+                        return
+                    }
+
+                    this.currentPlayer = this.players.bot
+
+                    const botPick = this.pickRandomPlace()
+                    const botX = botPick.x
+                    const botY = botPick.y
+                    this.placeSign(this.players.bot, botX, botY)
+
+                    this.currentPlayer = this.players.player
+                    displayController.updateDisplay()
+                } else {
+                    this.currentPlayer = this.players.player
+
+                    displayController.updateDisplay()
+                    return
+                }
+
+            } else if (this.currentPlayer == this.players.bot) {
+                const botPick = this.pickRandomPlace()
+                const botX = botPick.x
+                const botY = botPick.y
+                this.placeSign(this.players.bot, botX, botY)
+
+                this.currentPlayer = this.players.player
+
+                displayController.updateDisplay()
+            }
+
+            if (this.checkWinner()) {
+                // alert(`Winner: ${this.checkWinner().name}`);
+                displayController.updateInfo(`Winner: ${this.checkWinner().name}`)
+                // this.clearBoard()
+            }
+            displayController.updateDisplay()
         }
     }
 })()
-console.log(game.main());
+
+game.main()
+
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains("tile")) {
+        const parentElement = event.target.parentElement
+        const parentElementChildren = Array.from(parentElement.children)
+        const grandParentElementChildren = Array.from(parentElement.parentElement.children)
+
+        const x = grandParentElementChildren.indexOf(parentElement)
+        const y = parentElementChildren.indexOf(event.target)
+
+        game.main(x, y)
+    }
+})
