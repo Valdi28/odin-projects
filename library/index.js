@@ -1,15 +1,17 @@
 const myLibrary = [];
 
-function Book(name, author, year, readed) {
-    this.name = name;
-    this.author = author;
-    this.year = year;
-    this.readed = readed;
-    this.toggleReadingStatus = () => {
-        this.readed = this.readed ? false : true;
-    };
-    this.id = crypto.randomUUID();
-};
+class Book {
+    constructor(name, author, year, readed) {
+        this.name = name;
+        this.author = author;
+        this.year = year;
+        this.readed = readed;
+        this.toggleReadingStatus = () => {
+            this.readed = this.readed ? false : true;
+        };
+        this.id = crypto.randomUUID();
+    }
+}
 
 function addBookToLibrary(library, name, author, year, readed) {
     const book = new Book(name, author, year, readed);
@@ -28,9 +30,9 @@ function renderLibary(tableElement, array) {
         tableElement.removeChild(tableElement.lastChild);
     };
 
-    for (let i = 0; i<array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         const item = array[i];
-        
+
 
         const row = document.createElement('tr');
 
@@ -58,7 +60,7 @@ function renderLibary(tableElement, array) {
         };
 
         row.append(name, author, year, readed, deleteBtn, toggleReadingStatus)
-        
+
         tableElement.appendChild(row);
     };
 
@@ -69,7 +71,7 @@ function deleteBook(array, bookId) {
     const bookIndex = array.findIndex(book => book.id == bookId);
 
     array.splice(bookIndex, 1)
-    
+
 
     renderLibary(tableElement, myLibrary);
 };
@@ -97,7 +99,7 @@ submitAddBook.addEventListener('click', (event) => {
     const readedStatus = readedStatusField.checked ? true : false;
 
     console.log(readedStatusField.checked);
-    
+
 
     addBookToLibrary(myLibrary, name, author, year, readedStatus);
     renderLibary(tableElement, myLibrary);
